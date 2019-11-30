@@ -14,6 +14,7 @@ particle_token = '7a7eaec24841b190f0c8baf54921f2ca87846ad1'
 particle_id = 'e00fce6860fd075a10f01dc9'
 mood_string = '0'
 mood = 0
+tweet_list = []
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
@@ -21,18 +22,18 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # Define the search term and the date_since date as variables
-search_words = "#tuesdaythoughts"
+search_words = "#blackfriday"
 t = "2018-11-16"
-
-def unique(list1):
-    unique_list = []
-    # traverse for all elements
-    for x in list1:
-        # check if exists in unique_list or not
-        if x not in unique_list:
-            unique_list.append(x)
-    # for x in unique_list:
-    #     print (x)
+#
+# def unique(list1):
+#     tweet_list = []
+#     # traverse for all elements
+#     for x in list1:
+#         # check if exists in unique_list or not
+#         if x not in tweet_list:
+#             tweet_list.append(x)
+#     # for x in unique_list:
+#     #     print (x)
 
 def scrap(date_since):
     global mood
@@ -40,15 +41,16 @@ def scrap(date_since):
     tweets = tweepy.Cursor(api.search,
                   q=search_words,
                   lang="en",
-                  since=date_since).items(2)
+                  since=date_since).items(5)
 
     # Iterate and print tweets
     for tweet in tweets:
-        raw_tweet = TextBlob(tweet.text)
-        t = tweet.created_at
-        mood = mood + raw_tweet.sentiment.polarity
-        print("Tweet: ", tweet.text)
-        print(raw_tweet.sentiment.polarity)
+        if tweet.text not in tweet_list:
+            tweet_list.append(tweet.text)
+            raw_tweet = TextBlob(tweet.text)
+            mood = mood + raw_tweet.sentiment.polarity
+        # print("Tweet: ", tweet.text)
+        # print(raw_tweet.sentiment.polarity)
         # print("Creado: ",tweet.created_at)
         # print ("Variable t", t)
 
@@ -56,31 +58,20 @@ def scrap(date_since):
 while True:
     timer = t
     scrap(timer)
-    time.sleep(10)
+    print (tweet_list)
+    time.sleep(5)
 
     if (mood > 5):
         mood_string = "happy"
     else:
         mood_string = "sad"
 
-    # if ( > 1):
-    #     mood_string = "2"
-    # else:
-    #     if (mood > 0.5):
-    #         mood_string = "1"
-    #     else:
-    #         if(mood >= 0):
-    #             mood_string = "0"
-    #         else:
-    #             if (mood < 0):
-    #                 mood_string = "-1"
-
     data = {'arg' : mood_string,
             'ACCESS_TOKEN' : particle_token }
 
     x = requests.post(url = particle_url, data = data)
 
+    print ("Mood_string: ", mood_string)
+    print ("Mood_float", mood)
     # print ("Respuesta de Particle", x.text)
     # print (api.rate_limit_status())
-    # print ("Mood_string: ", mood_string)
-    # print ("Mood_float", mood)

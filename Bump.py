@@ -1,9 +1,12 @@
-''' pg_playmp3f.py
-play MP3 music files using Python module pygame
-pygame is free from: http://www.pygame.org
-(does not create a GUI frame in this case)
-'''
+from sseclient import SSEClient
+import json
 import pygame as pg
+
+messages = SSEClient('https://api.spark.io/v1/events/bump?access_token=7a7eaec24841b190f0c8baf54921f2ca87846ad1')
+music_file = "data/fart1.mp3"
+volume = 0.8
+# optional volume 0 to 1.0
+
 def play_music(music_file, volume=0.8):
     '''
     stream music with mixer.music module in a blocking manner
@@ -32,7 +35,7 @@ def play_music(music_file, volume=0.8):
 # otherwise give the full file path
 # (try other sound file formats too)
 
-music_file = "data/fart1.mp3"
-# optional volume 0 to 1.0
-volume = 0.8
-play_music(music_file, volume)
+for msg in messages:
+    print (msg)
+    play_music(music_file, volume)
+    # if not messages:
