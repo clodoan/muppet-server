@@ -1,10 +1,13 @@
 from sseclient import SSEClient
+import time
 import json
 import pygame as pg
 
 messages = SSEClient('https://api.spark.io/v1/events/bump?access_token=7a7eaec24841b190f0c8baf54921f2ca87846ad1')
+
 music_file = "data/fart1.mp3"
 volume = 0.8
+
 # optional volume 0 to 1.0
 
 def play_music(music_file, volume=0.8):
@@ -35,7 +38,38 @@ def play_music(music_file, volume=0.8):
 # otherwise give the full file path
 # (try other sound file formats too)
 
+
 for msg in messages:
-    print (msg)
-    play_music(music_file, volume)
-    # if not messages:
+    y = msg.data
+    if y == "":
+        print("empty")
+    else:
+        play_music(music_file, volume)
+
+    # yjs = json.loads(y)
+    # print(yjs)
+
+    # if type(y) is not str:
+    #     yjs = json.loads(y)
+    #     print(yjs)
+        # filtername = "bump"
+        # if yjs[filtername] == "ouch":
+        #      play_music(music_file, volume)
+
+
+     # x = json.dumps(msg)
+
+     # if msg["data"] == "ouch":
+     #    print("ouch")
+
+
+    # if "ouch" not in messages:
+    #     play_music(music_file, volume)
+
+    # x = messages
+    # y = json.loads(x)
+    # if messages["data"] == "ouch":
+
+# while True:
+#     print(messages)
+#     time.sleep(1)

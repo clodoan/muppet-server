@@ -24,16 +24,6 @@ api = tweepy.API(auth)
 # Define the search term and the date_since date as variables
 search_words = "#blackfriday"
 t = "2018-11-16"
-#
-# def unique(list1):
-#     tweet_list = []
-#     # traverse for all elements
-#     for x in list1:
-#         # check if exists in unique_list or not
-#         if x not in tweet_list:
-#             tweet_list.append(x)
-#     # for x in unique_list:
-#     #     print (x)
 
 def scrap(date_since):
     global mood

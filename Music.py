@@ -32,7 +32,8 @@ def play_music(music_file, volume=0.8):
 # otherwise give the full file path
 # (try other sound file formats too)
 
-music_file = "data/fart1.mp3"
+music_file = "data/gameover.mp3"
+# music_file = "/Users/claudio/Desktop/RealMuppet/RealMuppet/data/gameover.mp3"
 # optional volume 0 to 1.0
 volume = 0.8
 play_music(music_file, volume)
