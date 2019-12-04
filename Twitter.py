@@ -4,8 +4,6 @@ import json
 import requests
 from textblob import TextBlob
 
-# from datetime import timedelta
-
 #twitter keys
 consumer_key = 'OmIemP8z6G9wmvAv4a3N9yR6k'
 consumer_secret = 'lmUa6me3TQa3N5YSp0Y7m3lJ0XFOOFrC0kk3KZaCu1KQPfJYNB'
@@ -20,6 +18,7 @@ particle_id = 'e00fce6860fd075a10f01dc9'
 #Variables
 mood_string = 'neutral'
 mood = 0
+num = 1
 tweet_list = []
 
 #Auth
@@ -28,7 +27,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # Define the search term and the date_since date as variables
-search_words = "#blackfriday"
+search_words = "#simoncowellisoverparty"
 t = "2018-11-16"
 
 def scrap(date_since):
@@ -46,18 +45,18 @@ def scrap(date_since):
             raw_tweet = TextBlob(tweet.text)
             mood = mood + raw_tweet.sentiment.polarity
         print("Tweet: ", tweet.text)
-        print(raw_tweet.sentiment.polarity)
+        # print(raw_tweet.sentiment.polarity)
         # print("Creado: ",tweet.created_at)
         # print ("Variable t", t)
 
 
 while True:
+
+    time.sleep(2)
     timer = t
     scrap(timer)
-    print (tweet_list)
-    time.sleep(1)
 
-    if (mood > 5):
+    if (mood > 1):
         mood_string = "happy"
     else:
         mood_string = "sad"
@@ -67,7 +66,8 @@ while True:
 
     x = requests.post(url = particle_url, data = data)
 
+    print(tweet_list)
     print ("Mood_string: ", mood_string)
-    # print ("Mood_float", mood)
+    print ("Mood_float", mood)
     # print ("Respuesta de Particle", x.text)
     # print (api.rate_limit_status())

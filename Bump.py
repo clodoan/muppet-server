@@ -2,13 +2,11 @@ from sseclient import SSEClient
 import time
 import json
 import random
+import itertools
 import pygame as pg
 
 messages = SSEClient('https://api.spark.io/v1/events/bump?access_token=7a7eaec24841b190f0c8baf54921f2ca87846ad1')
-
-# music_file = "data/fart1.mp3"
-# rand_int = random.randint(1,16)
-# music_file ="data/{0}/{1}.mp3".format("angry", rand_int)
+moods = SSEClient('https://api.spark.io/v1/events/mood?access_token=7a7eaec24841b190f0c8baf54921f2ca87846ad1')
 
 volume = 0.8
 # optional volume 0 to 1.0
@@ -38,10 +36,25 @@ def play_music(music_file, volume=0.8):
         # check if playback has finished
         clock.tick(30)
 
-for msg in messages:
+# for mood in moods:
+#     m = mood.data
+#     print (m)
+
+for msg, mood in zip(messages, moods):
+
+    m = mood.data
+    if m.startswith('{"data":"sad"'):
+        folder = "sad"
+        print("sad")
+    else:
+        if m.startswith('{"data":"happy"'):
+            folder = "happy"
+            print ("happy")
+
     y = msg.data
     if y == "":
         print("empty")
     else:
-        music_file ="data/{0}/{1}.mp3".format("angry", random.randint(1,17))
-        play_music(music_file, volume)
+        if y.startswith('{"data":"ouch"'):
+            music_file ="data/{0}/{1}.mp3".format(folder, random.randint(1,17))
+            play_music(music_file, volume)
