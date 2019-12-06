@@ -27,7 +27,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # Define the search term and the date_since date as variables
-search_words = "#simoncowellisoverparty"
+search_words = "#liveve"
 t = "2018-11-16"
 
 def scrap(date_since):
@@ -36,7 +36,7 @@ def scrap(date_since):
     tweets = tweepy.Cursor(api.search,
                   q=search_words,
                   lang="en",
-                  since=date_since).items(5)
+                  since=date_since).items(2)
 
     # Iterate and print tweets
     for tweet in tweets:
@@ -52,14 +52,18 @@ def scrap(date_since):
 
 while True:
 
-    time.sleep(2)
+    time.sleep(5)
     timer = t
     scrap(timer)
 
-    if (mood > 1):
-        mood_string = "happy"
+    if (mood > 2):
+        mood_string = "2"
     else:
-        mood_string = "sad"
+        if (mood < 2 and mood > - 2):
+            mood_string = "1"
+        else:
+            if (mood < -2):
+                mood_string = "0"
 
     data = {'arg' : mood_string,
             'ACCESS_TOKEN' : particle_token }

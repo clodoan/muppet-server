@@ -9,6 +9,7 @@ messages = SSEClient('https://api.spark.io/v1/events/bump?access_token=7a7eaec24
 moods = SSEClient('https://api.spark.io/v1/events/mood?access_token=7a7eaec24841b190f0c8baf54921f2ca87846ad1')
 
 volume = 0.8
+folder = "0"
 # optional volume 0 to 1.0
 def play_music(music_file, volume=0.8):
     '''
@@ -41,20 +42,28 @@ def play_music(music_file, volume=0.8):
 #     print (m)
 
 for msg, mood in zip(messages, moods):
-
     m = mood.data
-    if m.startswith('{"data":"sad"'):
-        folder = "sad"
-        print("sad")
-    else:
-        if m.startswith('{"data":"happy"'):
-            folder = "happy"
-            print ("happy")
+    if m.startswith('{"data":'):
+         folder = m[9:10]
+         print(folder)
+
+    # if m.startswith('{"data":"sad"'):
+    #     folder = "sad"
+    #     print(m)
+    # else:
+    #     if m.startswith('{"data":"happy"'):
+    #         folder = "happy"
+    #         print (m)
+    #     else:
+    #         if m.startswith('{"data":"super_sad"'):
+    #             folder = "super_sad"
+    #             print (m)
 
     y = msg.data
     if y == "":
         print("empty")
     else:
         if y.startswith('{"data":"ouch"'):
-            music_file ="data/{0}/{1}.mp3".format(folder, random.randint(1,17))
+            music_file ="data/{0}/{1}.mp3".format(folder, random.randint(1,23))
             play_music(music_file, volume)
+            time.sleep(1)
