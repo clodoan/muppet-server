@@ -11,9 +11,9 @@ access_token = '385988316-ow3vIPPx5pRiHTGYk5SbuVpyk803XFYSBb2Sxqpm'
 access_token_secret = 'rwEih4j9lEo9Uy6k65LTqJmO6NvqPXLCJ03oRAkmKXrGA'
 
 #Particle Keys
-particle_url = 'https://api.particle.io/v1/devices/e00fce6860fd075a10f01dc9/led?access_token=7a7eaec24841b190f0c8baf54921f2ca87846ad1'
+particle_url = 'https://api.particle.io/v1/devices/e00fce6837e36cdaedf5ec05/led?access_token=7a7eaec24841b190f0c8baf54921f2ca87846ad1'
 particle_token = '7a7eaec24841b190f0c8baf54921f2ca87846ad1'
-particle_id = 'e00fce6860fd075a10f01dc9'
+particle_id = 'e00fce6837e36cdaedf5ec05'
 
 #Variables
 mood_string = 'neutral'
@@ -28,7 +28,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # Define the search term and the date_since date as variables
-search_words = "#bebest"
+search_words = "#tellmeastory"
 t = "2018-11-16"
 
 def scrap(date_since):
@@ -58,10 +58,10 @@ while True:
     timer = t
     scrap(timer)
 
-    if (mood > 1):
+    if (mood > 2):
         mood_string = "2"
     else:
-        if (mood < 1 and mood > - 2):
+        if (mood < 2 and mood > - 2):
             mood_string = "1"
         else:
             if (mood < -2):
