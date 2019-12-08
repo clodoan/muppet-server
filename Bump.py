@@ -50,14 +50,14 @@ for msg, mood in zip(messages, moods):
         print("empty")
     else:
         if y.startswith('{"data":"ouch"'):
-            # bumped == True
-            # music_file ="data/{0}/{1}.mp3".format(folder, random.randint(1,23))
-            # play_music(music_file, volume)
+            music_file ="data/{0}/{1}.mp3".format(folder, random.randint(1,23))
+            play_music(music_file, volume)
 
-            if bumped == True:
-                bumped == False
-                print("falso")
-            else:
-                bumped == True
-                music_file ="data/{0}/{1}.mp3".format(folder, random.randint(1,23))
-                play_music(music_file, volume)
+
+            # if bumped == True:
+            #     bumped == False
+            #     print("falso")
+            # else:
+            #     bumped == True
+            #     music_file ="data/{0}/{1}.mp3".format(folder, random.randint(1,23))
+            #     play_music(music_file, volume)

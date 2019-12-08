@@ -28,7 +28,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # Define the search term and the date_since date as variables
-search_words = "#bebest"
+search_words = "#trump"
 t = "2018-11-16"
 
 def scrap(date_since):
@@ -58,13 +58,13 @@ while True:
     timer = t
     scrap(timer)
 
-    if (mood > 1):
+    if (mood > 3):
         mood_string = "2"
     else:
-        if (mood < 1 and mood > - 2):
+        if (mood < 3 and mood > 2):
             mood_string = "1"
         else:
-            if (mood < -2):
+            if (mood < 1 ):
                 mood_string = "0"
 
     data = {'arg' : mood_string,
