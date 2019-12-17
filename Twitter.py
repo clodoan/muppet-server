@@ -28,7 +28,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # Define the search term and the date_since date as variables
-search_words = "#trump"
+search_words = "#socialmonster"
 t = "2018-11-16"
 
 def scrap(date_since):
