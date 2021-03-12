@@ -2,6 +2,7 @@
  
 As children, we were imaginative, joyful, and genuine. As we've aged, often we become more influenced by what others say about us, less imaginative, and overall grumpier. People could tweet at this monster using a special hashtag, he would "understand" if these tweets were good or bad, and he would change his mood accordingly. 
 
+This project was part of an art installation in the University of Pennsylvania called "Nostalgic Futures". 
 
 ![1DDACE17-5826-4547-ACF4-C2A9E916CA12_1_105_c](https://user-images.githubusercontent.com/12160059/110980458-dda3c380-8333-11eb-8ca9-f7932b5f91b7.jpeg)
 ![6E30EA9C-9EE0-46AB-847C-710C2B3A4812_1_105_c](https://user-images.githubusercontent.com/12160059/110980536-f01dfd00-8333-11eb-8257-1906f6895e4b.jpeg)
